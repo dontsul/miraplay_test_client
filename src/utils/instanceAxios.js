@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const instanceAxios = axios.create({
-  baseURL: "http://localhost:4000/",
+  baseURL: "https://miraplay-test-server-five.vercel.app/",
   headers: { "Content-Type": "application/json" },
 });
 instanceAxios.interceptors.request.use((config) => {
