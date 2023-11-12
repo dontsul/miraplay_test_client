@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Neue Machina";
+  src: local("Neue Machina Regular"), local("Neue-Machina-Regular"),
+    url("/fonts/NeueMachina-Regular.woff2") format("woff2"),
+    url("NeueMachina-Regular.woff") format("woff"),
+    url("/public/fonts/NeueMachina-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Neue Machina";
+  src: local("Neue Machina Ultra bold"), local("Neue-Machina-Ultra-bold"),
+    url("/fonts/NeueMachina-Ultrabold.woff2") format("woff2"),
+    url("/public/fonts/NeueMachina-Ultrabold.woff") format("woff"),
+    url("/public/fonts/NeueMachina-Ultrabold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+:root {
+  font-family: Neue Machina;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #fbfbfb;
+  background-color: #181818;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: Neue Machina;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:enabled,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #fff;
+  -webkit-box-shadow: 0 0 0px 1000px #1c1c1c inset;
+  box-shadow: 0 0 0px 1000px #1c1c1c inset;
+  background-color: #1c1c1c;
+}
+
+.conatiner {
+  margin: 0 auto;
+  max-width: 1200px;
+  width: 100%;
+}
+
+@layer components {
+  .line {
+    @apply relative
+          after:bg-[#50ca18]
+            after:h-[1px]
+            after:w-[0%]
+            after:rounded-xl
+            after:left-0
+            after:-bottom-[1px]
+            after:absolute
+            after:duration-300
+            hover:after:w-full
+            after:content-[''];
+  }
+}
