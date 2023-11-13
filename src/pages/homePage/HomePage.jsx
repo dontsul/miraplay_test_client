@@ -14,10 +14,12 @@ export const HomePage = () => {
   const [page, setPage] = useState(1);
   const { token } = useSelector((state) => state.auth);
   const [activeFilter, setActiveFilter] = useState("ALL");
+  const [isFreshGamesFirst, setIsFreshGamesFirst] = useState(true);
+
   const gamesToShow = 9;
   const queryData = {
     page,
-    isFreshGamesFirst: true,
+    isFreshGamesFirst,
     genre: activeFilter === "ALL" ? false : activeFilter,
     gamesToShow,
   };
@@ -25,6 +27,9 @@ export const HomePage = () => {
   const { data: gamesData, isLoading, refetch } = useGetGamesListQuery(queryData);
   const handleFilter = (value) => {
     setActiveFilter(value);
+  };
+  const handleFilterFresh = (value) => {
+    setIsFreshGamesFirst(value);
   };
 
   useEffect(() => {
@@ -46,7 +51,13 @@ export const HomePage = () => {
           <Title cn="py-2 text-center" tag={"h2"}>
             All Games
           </Title>
-          <Filter activeFilter={activeFilter} handleFilter={handleFilter} setPage={setPage} />
+          <Filter
+            activeFilter={activeFilter}
+            handleFilter={handleFilter}
+            setPage={setPage}
+            isFreshGamesFirst={isFreshGamesFirst}
+            handleFilterFresh={handleFilterFresh}
+          />
 
           {isLoading && <Spinner />}
           {gamesData && gamesData?.games?.length > 0 ? (
@@ -70,7 +81,9 @@ export const HomePage = () => {
             </div>
           ) : null}
         </div>
-      ) : null}
+      ) : (
+        <Spinner />
+      )}
     </Fragment>
   );
 };

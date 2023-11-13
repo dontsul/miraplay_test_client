@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import PropTypes from "prop-types";
+import { ToggleFilter } from "../toggleFilter/ToggleFilter";
 
 const filtersData = [
   {
@@ -74,10 +75,16 @@ const filterVariants = {
   }),
 };
 
-export const Filter = ({ handleFilter, activeFilter, setPage }) => {
+export const Filter = ({
+  handleFilter,
+  activeFilter,
+  setPage,
+  isFreshGamesFirst,
+  handleFilterFresh,
+}) => {
   return (
-    <div>
-      <ul className="flex flex-row items-center gap-4 flex-wrap">
+    <div className="flex items-start flex-wrap gap-4 justify-between">
+      <ul className="flex flex-row items-center gap-4 flex-wrap w-[70%]">
         {filtersData.map(({ value, id }, index) => {
           return (
             <motion.li
@@ -98,6 +105,7 @@ export const Filter = ({ handleFilter, activeFilter, setPage }) => {
           );
         })}
       </ul>
+      <ToggleFilter isFreshGamesFirst={isFreshGamesFirst} handleFilterFresh={handleFilterFresh} />
     </div>
   );
 };
@@ -106,4 +114,6 @@ Filter.propTypes = {
   handleFilter: PropTypes.func.isRequired,
   activeFilter: PropTypes.string.isRequired,
   setPage: PropTypes.func.isRequired,
+  isFreshGamesFirst: PropTypes.bool.isRequired,
+  handleFilterFresh: PropTypes.func.isRequired,
 };
